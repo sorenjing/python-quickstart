@@ -1,93 +1,112 @@
+---
+layout: default
+title: 04 字符串
+description: 从索引和切片学到拆分、替换与固定格式输出。
+kind: lesson
+---
+
 # 04｜字符串
 
-> 学完本章：会访问字符、使用切片、判断字符串内容并格式化输出。
-
-## 1. 字符串是什么？
-
-`str` 类型表示文本，可以使用单引号或双引号：
+## 从一个位置取出字符
 
 ~~~python
-a = "Python"
-b = '期末复习'
-print(len(a))  # 6
+text = "code"
+print(text[0], text[-1])  # c e
+print(text[1:3])          # od
+print(text[::2])          # cd
+print(text[::-1])         # edoc
 ~~~
 
-字符串中的字符按顺序排列，**索引从 0 开始**。
+| 字符 | c | o | d | e |
+| --- | --- | --- | --- | --- |
+| 正向索引 | 0 | 1 | 2 | 3 |
+| 负向索引 | -4 | -3 | -2 | -1 |
 
-## 2. 索引和切片
+`text[开始:结束:步长]` 取起点，走到终点之前停止。省略起点或终点时用对应方向的边界。索引越界会报错，切片越界会截到能取的范围。`len("你好")` 得到 2。
+
+字符串的单个字符无法直接改写。要把开头换成其他字符，可以拼接出一个新字符串。
 
 ~~~python
-s = "Python"
-print(s[0])     # P
-print(s[-1])    # n
-print(s[1:4])   # yth
-print(s[:2])    # Py
-print(s[2:])    # thon
-print(s[::-1])  # nohtyP
+text = "cat"
+text = "b" + text[1:]
+print(text, "ha" * 2)  # bat haha
 ~~~
 
-| 字符 | P | y | t | h | o | n |
-| --- | --- | --- | --- | --- | --- | --- |
-| 正向索引 | 0 | 1 | 2 | 3 | 4 | 5 |
-| 负向索引 | -6 | -5 | -4 | -3 | -2 | -1 |
-
-切片 `s[start:stop:step]`，**取 start，不取 stop**，step 是步长。超出范围的普通索引会报错；切片通常会截取可用范围，不会因此报索引越界错误。
-
-## 3. 字符串不可修改
+## 拆分、清理和查找
 
 ~~~python
-s = "cat"
-# s[0] = "b"  # 错误：字符串不可变
-s = "b" + s[1:]
-print(s)  # bat
+text = "@@red,blue@@"
+parts = text.strip("@").split(",")
+print(parts)                 # ['red', 'blue']
+print("-".join(parts))       # red-blue
+print(text.replace("red", "green"))
 ~~~
 
-给变量重新赋值可以获得新字符串，但不能直接修改原字符串的某个字符。
+`strip()` 去掉首尾空白，`strip("@")` 去掉首尾的 `@`，中间字符保留。`strip("ab")` 会从两端反复删掉 `a` 或 `b`。`split(",")` 按逗号拆开，产生一组文本。`"-".join(parts)` 在每两段文本之间插入短横线，参与拼接的元素都要是字符串。
 
-## 4. 常见字符串操作
+| 写法 | 从哪里看结果 |
+| --- | --- |
+| `"banana".count("a")` | 出现 3 次 |
+| `"banana".find("na")` | 第一次出现的位置为 2，找不到时返回 `-1` |
+| `"banana".index("na")` | 也是 2，找不到时抛出 `ValueError` |
+| `"na" in "banana"` | `True` |
+| `"heLLo world".capitalize()` | `"Hello world"` |
+| `"heLLo world".title()` | `"Hello World"` |
+
+`lower()` 和 `upper()` 转大小写，原字符串仍然保留。比较字符串时，从第一个不同的字符按编码值判断，`"Z" < "a"` 为真。`ord("a")` 得到编码值，`chr(ord("a") + 1)` 得到 `"b"`。
+
+字母循环移位时，先用 `ord(字母) - ord("a")` 得到 0 到 25 的位置，位移后对 26 取余，最后用 `chr()` 转回字母。下面把小写字母向后移一位。
 
 ~~~python
-text = "  Hello Python  "
-print(text.strip())             # Hello Python（去掉首尾空白）
-print(text.lower())             # 转小写
-print("a,b,c".split(","))       # ['a', 'b', 'c']
-print("-".join(["a", "b"]))    # a-b
-print("hello".replace("l", "L")) # heLLo
-print("Python".find("th"))     # 2
-print("Py" in "Python")        # True
+text = "az"
+result = ""
+for letter in text:
+    position = ord(letter) - ord("a")
+    result += chr(ord("a") + (position + 1) % 26)
+print(result)
 ~~~
 
-`find()` 找不到时返回 `-1`；`split()` 返回列表；`join()` 把多个字符串连接起来。
+输出 `ba`，因为 `z` 位移后回到 `a`。
 
-## 5. 格式化与转义字符
-
-推荐使用 `f-string`：
+## 按题目格式打印
 
 ~~~python
-name = "小李"
-score = 93.456
-print(f"{name}的成绩是{score:.1f}分")  # 小李的成绩是93.5分
+value = 7.2
+print("{:.2f}".format(value))   # 7.20
+print(f"{value:.2f}")           # 7.20
+print("%s: %.2f" % ("价钱", value))
+print("{:=>8}".format("OK"))    # ======OK
 ~~~
 
-常见转义字符：
+`.2f` 要求输出两位小数。`=>8` 表示用 `=` 填充、向右对齐、总宽度至少 8。`{1}` 会选 `.format()` 第 2 个参数，例如 `"{1}-{0}".format("甲", "乙")` 得到 `乙-甲`。遇到 `"{0:{1}{2}{3}}".format("OK", "=", ">", 8)`，先把里层看成 `=>8`，再对位置 0 的值应用格式。
 
-- `\n`：换行。
-- `\t`：制表符。
-- `\\`：反斜杠本身。
+`\n` 表示换行，`\t` 表示制表符，`\\` 表示一个反斜杠。程序题要求按行输出时，额外写出的空格或换行也算输出的一部分。
 
-## 考前记住
+## 用切片拆开带单位的输入
 
-- 正向索引从 0 开始，负索引从 -1 开始。
-- 切片**包含起点、不包含终点**。
-- 字符串不可变；`replace()` 等方法返回新字符串。
-- `len()` 求长度，`in` 检查是否包含，`split()` 拆分。
+~~~python
+text = "F68"
+unit = text[0]
+value = float(text[1:])
+if unit == "F":
+    result = (value - 32) / 1.8
+    print(f"C{result:.1f}")
+else:
+    result = value * 1.8 + 32
+    print(f"F{result:.1f}")
+~~~
 
-## 练习
+输出 `C20.0`。先把单位和数值部分拆开，再用分支决定算式。月份映射题也类似，先找出日期中的月份，再根据需要做判断或查表。
 
-1. 对 `s = "abcdef"`，写出 `s[1:5:2]`、`s[-2:]`、`s[::-1]` 的结果。
-2. 输入一个字符串，判断是否为回文（从左往右和从右往左相同）。
-3. 把 `"  86,92,75  "` 去掉首尾空格，再按照逗号拆分。
+<h2 id="self-check">快练</h2>
 
-答案见 [练习汇总](../exercises/README.md)。
+预测 `print(" ab-cd ".strip()[::-2])` 的输出，指出从哪个位置开始取。
 
-[上一章](03-control-flow.md) · [下一章：组合数据类型 →](05-collections.md)
+<details>
+<summary>查看答案</summary>
+<p>输出 <code>d-a</code>。去掉首尾空白以后是 <code>ab-cd</code>，从末尾开始每隔一个字符取一次。</p>
+</details>
+
+---
+
+[上一课](03-control-flow.md) · [下一课：列表、元组、字典与集合](05-collections.md)

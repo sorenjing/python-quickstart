@@ -1,71 +1,56 @@
-# 00｜Python 入门
+---
+layout: default
+title: 00 运行第一段 Python
+description: 运行第一个 Python 文件，预测带引号和不带引号的输出。
+kind: lesson
+---
 
-> 学完本章：知道如何运行一个 `.py` 文件，理解 Python 的基本特点。历史知识只做考前速记。
+# 00｜运行第一段 Python
 
-## 1. Python 是什么？
-
-Python 是一种通用的高级编程语言。这里学习的是 **Python 3**，不需要先学 Python 2。
-
-Python 的语法相对简洁，常用于入门教学、数据处理、自动化等。语言特点可以记住几个词：**解释型、动态类型、跨平台、多范式**。这些是概括，后续通过代码来理解即可。
-
-### 只需记住的常识
-
-- 创建者：Guido van Rossum（吉多·范罗苏姆）。
-- 开发始于 1989 年，首次公开发布于 1991 年。
-- 名字来源于英国喜剧团体 Monty Python，而不是蟒蛇。
-- 现在学习和考试通常使用 Python 3；Python 2 已停止维护。
-
-> 不需要背诵历次版本发布日期、开发者生平或语言发展故事。是否考这些识记题，以本校要求为准。
-
-## 2. 安装与运行
+## 运行第一行
 
 1. 从 [Python 官网](https://www.python.org/downloads/) 安装 Python 3。
-2. 在终端执行 `python --version`，确认输出 Python 3 的版本号。
-3. 新建 `hello.py`，写入：
+2. 用编辑器新建 `hello.py`，写入下面这行并保存。`.py` 是 Python 文件常用的后缀。引号和括号用英文符号。
 
 ~~~python
-print("Hello, Python!")
+print("期末加油")
 ~~~
 
-4. 在文件所在目录执行：
+3. 在 `hello.py` 所在的文件夹打开终端，运行下面这条命令。在 VS Code 中，可以打开该文件夹后点「终端 → 新建终端」。
 
-~~~bash
+~~~console
 python hello.py
 ~~~
 
-预期输出：
+屏幕会显示 `期末加油`。这行显示出来的文字叫**输出**。把引号里的文字改掉，再运行一次，看看输出怎么变。
 
-~~~text
-Hello, Python!
-~~~
+<details>
+<summary>命令找不到或文件打不开</summary>
+<p>终端找不到 <code>python</code> 时，Windows 可以试 <code>py hello.py</code>，macOS 或 Linux 可以试 <code>python3 hello.py</code>。</p>
+<p>如果提示找不到文件，检查文件是不是叫 <code>hello.py</code>，以及终端是否开在保存文件的目录。</p>
+</details>
 
-> 如果提示找不到 `python`，Windows 可尝试 `py`，macOS / Linux 常见命令是 `python3`。使用与你的安装环境匹配的命令。
+## 认识 Python
 
-## 3. 程序、语句和输出
+- Python 由 Guido van Rossum 创建，1991 年首次公开发布。
+- Python 是开源的高级通用编程语言，通常通过解释器运行，支持过程式和面向对象等写法。
+- Python 采用动态类型，变量无需事先声明类型，类型由实际的值决定。同一名字可以先后指向不同类型的值。
+- 源码区分大小写，用缩进划分代码块。常见书写约定是每层缩进 4 个空格，变量和函数名常用小写字母加下划线。
 
-- **程序**：按一定顺序执行的代码。
-- **语句**：通常是一行要执行的操作，例如调用 `print()`。
-- **输出**：`print()` 把内容显示到屏幕，不会自动保存到文件。
+<h2 id="self-check">先猜结果，再运行</h2>
+
+把文件内容换成下面两行。先写下每行会输出什么，再运行核对。`*` 表示乘法。
 
 ~~~python
-print(1 + 2)       # 输出 3
-print("1 + 2")     # 输出 1 + 2
+print(2 * 3)
+print("2 * 3")
 ~~~
 
-引号内的是文本；不加引号的 `1 + 2` 是计算表达式。
+<details>
+<summary>查看参考答案</summary>
+<p>第一行输出 <code>6</code>，因为 Python 先计算乘法。第二行输出 <code>2 * 3</code>，因为引号里的内容是文字。</p>
+</details>
 
-## 考前记住
+---
 
-1. Python 文件常见扩展名：`.py`。
-2. 字符串需要引号，数字表达式不需要。
-3. Python 3 是本教程所用版本。
-4. `print()` 用来输出。
-
-## 练习
-
-1. 写一行代码，输出 `期末加油`。
-2. 判断：`print(2 * 3)` 和 `print("2 * 3")` 的结果是否相同？
-
-答案见 [练习汇总](../exercises/README.md)。
-
-[下一章：基础语法 →](01-basics.md)
+[下一课：变量与输入输出](01-basics.md)

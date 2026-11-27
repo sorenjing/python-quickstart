@@ -1,0 +1,78 @@
+---
+layout: default
+title: 首页
+description: 面向非计算机专业和零基础学习者的 Python 期末速成教程。
+kind: home
+---
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <h1>Python <span>期末速成</span></h1>
+      <p class="hero-copy">从第一行代码开始，按两份课程题库的范围学语法、练解题。</p>
+      <div class="hero-actions">
+        <a class="button primary" href="{{ '/00-introduction.html' | relative_url }}">从零开始</a>
+        <a class="button secondary" href="{{ '/09-review.html' | relative_url }}">考前自测</a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="wrap home-body">
+  <section id="lessons" aria-labelledby="lessons-title">
+    <div class="section-title">
+      <h2 id="lessons-title">课程目录</h2>
+    </div>
+    <div class="lesson-list">
+      <a class="lesson-card" href="{{ '/00-introduction.html' | relative_url }}">
+        <span class="lesson-number">00</span>
+        <span><strong>运行第一段 Python</strong><small>打开 Python，运行一个 .py 文件。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/01-basics.html' | relative_url }}">
+        <span class="lesson-number">01</span>
+        <span><strong>变量与输入输出</strong><small>给数据起名字，从键盘读入，再打印结果。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/02-types-operators.html' | relative_url }}">
+        <span class="lesson-number">02</span>
+        <span><strong>数字、类型与运算</strong><small>弄清楚除法、取余、类型转换和真假。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/03-control-flow.html' | relative_url }}">
+        <span class="lesson-number">03</span>
+        <span><strong>条件与循环</strong><small>判断走哪条路，数清一共重复几次。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/04-strings.html' | relative_url }}">
+        <span class="lesson-number">04</span>
+        <span><strong>字符串</strong><small>用索引、切片和方法处理文字。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/05-collections.html' | relative_url }}">
+        <span class="lesson-number">05</span>
+        <span><strong>列表、元组、字典和集合</strong><small>保存一组数据，学会遍历、复制和统计。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/06-functions-recursion.html' | relative_url }}">
+        <span class="lesson-number">06</span>
+        <span><strong>函数与递归</strong><small>传入参数、拿回结果，再尝试让函数调用自己。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/07-modules-random-exceptions.html' | relative_url }}">
+        <span class="lesson-number">07</span>
+        <span><strong>模块、随机数与异常</strong><small>导入常用模块，判断随机范围，处理输入错误。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/08-files-csv.html' | relative_url }}">
+        <span class="lesson-number">08</span>
+        <span><strong>文件与 CSV</strong><small>按行读取，转成数字，再筛选、汇总并排序。</small></span>
+      </a>
+      <a class="lesson-card" href="{{ '/09-review.html' | relative_url }}">
+        <span class="lesson-number">09</span>
+        <span><strong>考前自测</strong><small>练习程序输出、改错和综合编程。</small></span>
+      </a>
+    </div>
+  </section>
+  <section id="practice" aria-labelledby="practice-title" class="practice">
+    <div>
+      <h2 id="practice-title">考前快练</h2>
+      <p>先自己写，再展开答案核对。</p>
+    </div>
+    <ul>
+      <li><a href="{{ '/03-control-flow.html' | relative_url }}#self-check">判断循环的输出</a></li>
+      <li><a href="{{ '/08-files-csv.html' | relative_url }}#self-check">筛选并统计 CSV</a></li>
+      <li><a href="{{ '/09-review.html' | relative_url }}#self-check">完成一轮综合自测</a></li>
+    </ul>
+  </section>
+</div>

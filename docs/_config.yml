@@ -1,0 +1,7 @@
+title: Python 期末速成
+lang: zh-CN
+url: "https://sorenjing.github.io"
+baseurl: "/python-quickstart"
+markdown: kramdown
+plugins:
+  - jekyll-relative-links
