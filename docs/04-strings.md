@@ -7,7 +7,7 @@ kind: lesson
 
 # 04｜字符串
 
-## 从一个位置取出字符
+<h2 id="string-slice">从一个位置取出字符</h2>
 
 ~~~python
 text = "code"
@@ -32,7 +32,7 @@ text = "b" + text[1:]
 print(text, "ha" * 2)  # bat haha
 ~~~
 
-## 拆分、清理和查找
+<h2 id="string-methods">拆分、清理和查找</h2>
 
 ~~~python
 text = "@@red,blue@@"
@@ -68,7 +68,9 @@ print(result)
 
 输出 `ba`，因为 `z` 位移后回到 `a`。
 
-## 按题目格式打印
+也能先把列表中每个数字转为字符串，再一起拼接。例如 `",".join(str(n) for n in [4, 7])` 得到 `"4,7"`。括号里的 `for` 逐个提供转换后的字符串。
+
+<h2 id="string-format">按题目格式打印</h2>
 
 ~~~python
 value = 7.2
@@ -82,7 +84,7 @@ print("{:=>8}".format("OK"))    # ======OK
 
 `\n` 表示换行，`\t` 表示制表符，`\\` 表示一个反斜杠。程序题要求按行输出时，额外写出的空格或换行也算输出的一部分。
 
-## 用切片拆开带单位的输入
+<h2 id="unit-input">用切片拆开带单位的输入</h2>
 
 ~~~python
 text = "F68"

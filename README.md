@@ -22,6 +22,7 @@
 | [07 模块、随机数与异常](docs/07-modules-random-exceptions.md) | math、random、随机模拟和异常处理 |
 | [08 文件与 CSV](docs/08-files-csv.md) | 读写模式、编码、文件位置和 CSV 统计 |
 | [09 考前自测](docs/09-review.md) | 识记、选择、判断、输出、填空、改错和编程 |
+| [10 程序题同类练习](docs/10-programming-practice.md) | 公式、分段、循环、函数、字典与文件综合题 |
 
 [随堂练习导航](exercises/README.md) · [基础运行示例](examples/)
 

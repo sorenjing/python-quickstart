@@ -77,7 +77,7 @@ if score &gt;= 60:
 <p><code>input()</code> 返回字符串，需要转换后再比较。条件末尾写冒号，块里的语句缩进。</p>
 </details>
 
-## 编程一｜统计一组分数
+<h2 id="statistics">编程一｜统计一组分数</h2>
 
 以 `[4, 1, 7, 4]` 为例，求平均数、中位数和用总体公式计算的方差。再去掉一个最高分和一个最低分，计算剩下分数的平均数。假设至少有三条记录。
 
@@ -136,4 +136,4 @@ print(max(counts, key=counts.get))</code></pre>
 <p>依次输出 <code>14</code>、<code>23</code>、<code>32</code>。</p>
 </details>
 
-[上一课：文件与 CSV](08-files-csv.md) · [返回课程目录](index.html)
+[上一课：文件与 CSV](08-files-csv.md) · [下一课：程序题同类练习](10-programming-practice.md)

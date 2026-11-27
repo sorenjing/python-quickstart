@@ -13,4 +13,6 @@
 - [08 文件与 CSV](../docs/08-files-csv.md#self-check)
 - [09 考前自测](../docs/09-review.md#self-check)
 
+- [10 程序题同类练习](../docs/10-programming-practice.md)
+
 [返回课程目录](../README.md)

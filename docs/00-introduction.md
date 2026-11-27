@@ -7,7 +7,7 @@ kind: lesson
 
 # 00｜运行第一段 Python
 
-## 运行第一行
+<h2 id="run">运行第一行</h2>
 
 1. 从 [Python 官网](https://www.python.org/downloads/) 安装 Python 3。
 2. 用编辑器新建 `hello.py`，写入下面这行并保存。`.py` 是 Python 文件常用的后缀。引号和括号用英文符号。
