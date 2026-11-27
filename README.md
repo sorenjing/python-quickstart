@@ -2,6 +2,8 @@
 
 通过示例和练习复习 Python 期末考点。
 
+[打开网页版](https://sorenjing.github.io/python-quickstart/)
+
 ## 怎么学
 
 1. 第一次写代码，从 [运行第一段 Python](docs/00-introduction.md) 开始，照着运行每课的小示例。
@@ -25,10 +27,6 @@
 | [10 程序题同类练习](docs/10-programming-practice.md) | 公式、分段、循环、函数、字典与文件综合题 |
 
 [随堂练习导航](exercises/README.md) · [基础运行示例](examples/)
-
-## 网页版
-
-网页从 `docs/` 中的同一套课程 Markdown 生成，可由 GitHub Pages 托管。发布设置选择 **Deploy from a branch**，再选择包含完整教程的分支和 `/docs` 目录。
 
 ## 查询与安装
 
