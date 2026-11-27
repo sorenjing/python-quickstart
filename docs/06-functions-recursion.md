@@ -9,7 +9,19 @@ kind: lesson
 
 <h2 id="function-call">先看函数怎么执行</h2>
 
-`def` 定义函数，调用时函数体才执行。参数是函数接收的数据，`return` 把结果交给调用处。
+函数是一段可以反复使用的代码。用 `def` 给它起名，把要接收的数据名放进括号，写完冒号后缩进。缩进的部分是这个函数要做的事，叫**函数体**，要等调用时才执行。
+
+~~~python
+def double(number):
+    return number * 2
+
+result = double(3)
+print(result)
+~~~
+
+程序读到 `double(3)` 时，把 3 交给 `number`，执行缩进去的代码。`return` 算出 6 并把它交回调用的位置，所以那一行相当于 `result = 6`。最后 `print(result)` 才把 6 显示到屏幕上。刚才传进去的 3 叫**实参**，定义里的名字 `number` 叫**形参**。
+
+如果某个参数常用同一个值，定义时可以提前给它一个默认值。下面的 `count=1` 就是没有传数量时按 1 件算。
 
 ~~~python
 def total(price, count=1):
@@ -28,7 +40,7 @@ print(total(count=3, price=6))
 | `print(x)` | 把 `x` 显示在屏幕上，调用结果是 `None` |
 | `def add(*numbers)` | 多个位置实参打包成元组 |
 | `def show(**options)` | 额外的关键字实参打包成字典 |
-| `add(*values)` | 把可迭代对象的元素逐个传入 |
+| `add(*values)` | 把列表或元组的元素拆开，一个个传入 |
 | `lambda x: x * 2` | 创建一个只有单个表达式的函数，结果自动返回 |
 
 ~~~python
@@ -85,7 +97,7 @@ for number in range(8, 12):
 
 <h2 id="recursion">递归凭什么停下来</h2>
 
-递归就是函数调用自己。先写能直接返回的停止条件，再让下一次调用更接近它。
+递归就是函数在执行时再次调用自己。下面用它求阶乘。`4!` 读作「4 的阶乘」，等于 `4 × 3 × 2 × 1`，所以也可以写成「4 乘以 3 的阶乘」。每次把问题缩小到前一个数，遇到 1 或 0 时直接返回 1，这就是结束递归的**停止条件**。
 
 ~~~python
 def factorial(number):

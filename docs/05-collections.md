@@ -9,6 +9,8 @@ kind: lesson
 
 ## 四种容器怎么读
 
+变量可以保存一组数据，比如 `scores = [5, 8]`。方括号圈住整组，逗号隔开每项。这是一个列表，`scores[0]` 会拿到第一项 5。能把一组数据放在一起的值叫**容器**。下表先用一个例子辨认每种容器，后面再看操作。
+
 | 类型 | 例子 | 怎么找数据 |
 | --- | --- | --- |
 | 列表 `list` | `[5, 8]` | 用位置取值，可改 |
@@ -20,6 +22,8 @@ kind: lesson
 
 <h2 id="list-ops">列表的加、删、改</h2>
 
+`values.append(4)` 可以读成「给 `values` 这份列表的末尾加上 4」。如果一道题有多行这样的操作，每执行一行就在纸上更新一次列表。下面先加，再删，最后取出末尾的一项。
+
 ~~~python
 values = [3, 1, 2]
 values.append(4)
@@ -29,6 +33,8 @@ values.remove(1)
 last = values.pop()
 print(values, last)  # [9, 3, 2, 4, 5] 6
 ~~~
+
+用下面两步区分按位置和按值。执行 `insert(0, 9)` 后，列表开头是 `[9, 3, 1, …]`。`remove(1)` 删掉的是值为 1 的那项，列表开头就变成 `[9, 3, 2, …]`。换成 `pop(1)` 会按下标删，取走的是 3。
 
 | 写法 | 读题时要留意 |
 | --- | --- |
@@ -60,11 +66,21 @@ print(sorted(copy, reverse=True))  # [3, 2, 1]
 ~~~python
 grid = [[4, 7], [1, 8]]
 print(grid[1][0], len(grid))  # 1 2
-numbers = [int(part) for part in "3 6 9".split()]
-print(numbers)                # [3, 6, 9]
 ~~~
 
-二维列表可看成表格，先取一行再取这一行里的元素。`len(grid)` 数的是外层有几个元素。`[表达式 for 名字 in 容器]` 每取一个元素就算一次表达式，结果组成新列表。简单转型也可以写成 `list(map(int, "3 6 9".split()))`。
+二维列表可看成表格。`grid[1]` 先拿到第二行 `[1, 8]`，再对这一行取 `[0]` 得到 1。`len(grid)` 数外层有两行。
+
+把一行空格分隔的文字变成数字列表，可以先用熟悉的循环来写。
+
+~~~python
+parts = "3 6 9".split()
+numbers = []
+for part in parts:
+    numbers.append(int(part))
+print(numbers)  # [3, 6, 9]
+~~~
+
+题目有时把上面的转换和收集写成 `[int(part) for part in parts]`，叫**列表推导式**。读的时候先看 `for part in parts` 每轮拿到什么，再看左侧的 `int(part)` 加入了什么。另一种写法 `list(map(int, parts))` 同样会逐项使用 `int`，最后用 `list` 收集成一个列表。
 
 <h2 id="tuple-unpack">元组与解包</h2>
 
@@ -79,13 +95,15 @@ print(x, y)  # 5 3
 
 <h2 id="dictionary">字典查值和计数</h2>
 
+`marks = {"甲": 2}` 可以看作一张查找表。冒号左边的 `"甲"` 是用来查找的**键**，右边的 2 是查到的**值**。`marks["甲"]` 会得到 2。下面从空字典开始数名字，第一次遇到「甲」时，`get("甲", 0)` 找不到旧次数，会拿 0 再加 1。第二次遇到「甲」就从已经保存的 1 加到 2。
+
 ~~~python
 counts = {}
 for name in ["甲", "乙", "甲"]:
     counts[name] = counts.get(name, 0) + 1
 print(counts)           # {'甲': 2, '乙': 1}
-print("甲" in counts)    # True
-print(counts.get("丙"))  # None
+print("甲" in counts)   # True
+print(counts.get("丙"))  # None，表示这里没有查到值
 for name, count in counts.items():
     print(name, count)
 ~~~

@@ -9,7 +9,9 @@ kind: lesson
 
 <h2 id="imports">导入模块</h2>
 
-模块是一份可以导入使用的 Python 代码。Python 自带的模块组成标准库，`math` 和 `random` 都在里面。
+模块可以理解成放着一组相关工具的代码文件。Python 自带的这组模块叫**标准库**。`import math` 把数学工具模块拿来用。写 `math.floor(3.8)` 时，点号前是去哪里找，点号后是要用哪个工具。
+
+`from math import sqrt` 只把 `sqrt` 这个名字拿过来，下一行可以直接写 `sqrt(81)`。
 
 ~~~python
 import math
@@ -50,7 +52,7 @@ random.seed(7)
 print(random.randrange(2, 10, 2))
 ~~~
 
-本例输出 `6`。候选值是 `2, 4, 6, 8`。种子放在抽样前，同一轮的循环里连续调用随机函数。
+本例输出 `6`。先把候选值写出来，`range(2, 10, 2)` 能取到 2、4、6、8，`randrange` 就从这四项里抽一个。**种子**决定抽样从怎样的状态开始。想在同一个 Python 环境里重现一串抽样，就在循环前设置一次种子，再按同样顺序抽取。
 
 <h3 id="random-area">用随机点估算面积</h3>
 
@@ -76,7 +78,9 @@ print(round(estimate, 3))
 
 <h2 id="exceptions">遇到错误怎么走</h2>
 
-运行中出错时，当前 `try` 中剩下的行会跳过。Python 从上到下寻找能处理该错误的 `except`。没有异常时执行 `else`，离开结构前执行 `finally`。
+试着把文字转成整数时，有的人可能输入小数。这类运行时遇到的问题叫**异常**。把可能出错的语句放进 `try`，在 `except` 里写遇到这个错误之后要做什么。`ValueError` 是 Python 给这类转换失败起的名字。`try` 中途出错时，余下的行会跳过，Python 从上到下找第一个能处理该错误的 `except`。
+
+`else` 放 `try` 顺利执行才要做的事。`finally` 放离开这组结构前都要执行的事。下面看一次转换失败时的顺序。
 
 ~~~python
 try:

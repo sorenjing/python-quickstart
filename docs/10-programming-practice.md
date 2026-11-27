@@ -35,7 +35,11 @@ print(math.ceil(ratio))</code></pre>
 <details>
 <summary>展开解法</summary>
 <pre><code>try:
-    a, b, c = sorted(float(part) for part in input().split(","))
+    parts = input().split(",")
+    lengths = []
+    for part in parts:
+        lengths.append(float(part))
+    a, b, c = sorted(lengths)
 except ValueError:
     print("无法组成")
 else:
@@ -47,7 +51,7 @@ else:
         print("两边相等")
     else:
         print("三边不同")</code></pre>
-<p>输入 5,5,6，输出“两边相等”。换成 2,3,5 会输出“无法组成”，因为两条短边之和恰好等于最长边。若题目需要面积，确认能组成后再套半周长公式。</p>
+<p>逗号拆出来的每一项先转数字，再放进列表。排序后依次交给 a、b、c，分别是最短、居中和最长的边。输入 5,5,6 时，短边和大于最长边，且 a 等于 b，输出“两边相等”。换成 2,3,5 时，短边和恰好等于最长边，输出“无法组成”。</p>
 </details>
 
 <h2 id="loops-practice">先确定行列，再决定每格是什么</h2>
@@ -160,7 +164,8 @@ for line in lines:
 
 for name, quantity in sorted(totals.items(), key=lambda item: item[1], reverse=True)[:1]:
     print(name, quantity)</code></pre>
-<p>输出“铅笔 5”。处理真实文件时，先用题目指定的编码打开。如果要按条件直接打印明细，每行满足条件就打印。如果要排名，留到循环结束再排序。碰到字段中可能有逗号的 CSV，改用 csv.reader。</p>
+<p>输出“铅笔 5”。例如 <code>2026/5/12</code> 用斜杠拆开后是 <code>["2026", "5", "12"]</code>，下标 1 拿到月份文字 <code>"5"</code>。两笔铅笔记录都命中，数量从 3 累计到 5，墨水所在的 8 月没有命中。</p>
+<p>处理真实文件时，先用题目指定的编码打开。如果要按条件直接打印明细，每行满足条件就打印。如果要排名，留到循环结束再排序。碰到字段中可能有逗号的 CSV，改用 csv.reader。</p>
 </details>
 
 [上一课：考前自测](09-review.md) · [返回课程目录](index.html)

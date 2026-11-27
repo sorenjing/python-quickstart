@@ -9,7 +9,7 @@ kind: lesson
 
 <h2 id="file-modes">打开文件</h2>
 
-文件路径可以是文件名，也可以包含目录。相对路径从程序的当前工作目录开始找。Windows 路径可以用 `"D:/data/notes.txt"`，也可以用原始字符串 `r"D:\data\notes.txt"`。普通字符串里的反斜杠要写成两个，比如 `"D:\\data\\notes.txt"`。
+**路径**告诉 Python 去哪里找文件。像 `notes.txt` 这样只写文件名，程序通常会从你在终端里运行命令的目录开始找，这叫相对路径。也可以写出包含目录的完整位置。Windows 路径可以用 `"D:/data/notes.txt"`，也可以用原始字符串 `r"D:\data\notes.txt"`。普通字符串里的反斜杠要写成两个，比如 `"D:\\data\\notes.txt"`。
 
 | 模式 | 行为 |
 | --- | --- |
@@ -22,7 +22,9 @@ kind: lesson
 
 编码规定文字怎样保存成字节。文本模式显式写 `encoding="utf-8"`。若题目说明源文件采用 GBK，读取时改用 `encoding="gbk"`。二进制模式读到的是 `bytes`，不传 `encoding`。
 
-用 `with open(...) as file:` 打开，缩进块结束会自动关闭文件。手动打开时要记得调用 `file.close()`。下面示例请在一个空目录运行，会创建 `notes.txt`。
+`open("notes.txt", "w", encoding="utf-8")` 依次指定文件名、打开用途和编码。`as file` 把打开的文件交给名字 `file`，缩进里就能用 `file.write(...)` 写入。`with` 会在缩进结束时关闭文件。手动打开的文件用完要调用 `file.close()`。
+
+下面示例先写、再重新打开来读。请在空目录运行，会创建 `notes.txt`。`repr()` 把值显示成能看见引号和 `\n` 的文字，方便判断究竟读到了什么。
 
 ~~~python
 with open("notes.txt", "w", encoding="utf-8") as file:
@@ -68,9 +70,25 @@ with open("notes.txt", "r", encoding="utf-8") as file:
 饮品,茶,16
 ~~~
 
-可以先只看读出了什么。打开文件后执行 `rows = csv.reader(file)`，再写 `print(next(rows))`，会看到表头 `['类别', '名称', '金额']`。再读一行会看到 `['文具', '铅笔', '12']`，其中 `'12'` 仍是文字。正式程序一次跳过表头，然后逐行处理数据。
+第一行的「类别、名称、金额」是列名，也叫**表头**。先跑一小段看看读到的内容。`csv.reader(file)` 把文件准备成可以一行行读取的记录，`next(rows)` 每执行一次取一行。
 
-下面只保留金额在 8 到 20 元之间的记录，按类别汇总，再按总额取前两名。
+~~~python
+import csv
+
+with open("sales.csv", "r", encoding="utf-8", newline="") as file:
+    rows = csv.reader(file)
+    print(next(rows))
+    print(next(rows))
+~~~
+
+~~~text
+['类别', '名称', '金额']
+['文具', '铅笔', '12']
+~~~
+
+现在可以把第二行的三列交给三个名字。`for category, name, text in rows:` 每轮把一行的第 1、2、3 列分别交给这三个名字。金额 `'12'` 带引号，还是文字，要用 `int(text)` 才能拿去比较。
+
+下面只保留金额在 8 到 20 元之间的记录。每遇到一条符合条件的记录，找到该类别之前的总额，没有就从 0 开始，再加上这笔金额。读完才排序。`totals.items()` 这类写法会逐对提供类别和总额。下面的 `key=lambda pair: pair[1]` 指定按每对的第 2 项，也就是总额排名，`reverse=True` 表示从大到小。最后 `[:2]` 取前两项。
 
 ~~~python
 import csv
