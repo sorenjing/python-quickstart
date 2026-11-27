@@ -30,7 +30,7 @@ print(sqrt(81))
 | `math.pi` | 圆周率近似值 |
 | `abs(x)`、`round(x, n)` | 求绝对值、按指定小数位舍入，都是内置函数 |
 
-`math.factorial(n)` 计算非负整数的阶乘。例如 `math.factorial(4)` 得到 24，因为从 1 乘到 4。科学计算常用到 NumPy，题库只需认出它是用于数组和矩阵计算的第三方库。
+`math.factorial(n)` 计算非负整数的阶乘。例如 `math.factorial(4)` 得到 24，因为从 1 乘到 4。NumPy 是用于数组和矩阵计算的第三方库。
 
 <h2 id="random-ranges">随机数的边界</h2>
 
